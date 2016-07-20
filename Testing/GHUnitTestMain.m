@@ -32,36 +32,8 @@
 #import <GHUnit/GHUnit.h>
 #import <GHUnit/GHTestApp.h>
 
-// Default exception handler
-void exceptionHandler(NSException *exception) { 
-  NSLog(@"%@\n%@", [exception reason], GHUStackTraceFromException(exception));
-}
-
 int main(int argc, char *argv[]) {
 
-  /*!
-   For debugging:
-   Go into the "Get Info" contextual menu of your (test) executable (inside the "Executables" group in the left panel of XCode). 
-   Then go in the "Arguments" tab. You can add the following environment variables:
-   
-   Default:   Set to:
-   NSDebugEnabled                        NO       "YES"
-   NSZombieEnabled                       NO       "YES"
-   NSDeallocateZombies                   NO       "YES"
-   NSHangOnUncaughtException             NO       "YES"
-   
-   NSEnableAutoreleasePool              YES       "NO"
-   NSAutoreleaseFreedObjectCheckEnabled  NO       "YES"
-   NSAutoreleaseHighWaterMark             0       non-negative integer
-   NSAutoreleaseHighWaterResolution       0       non-negative integer
-   
-   For info on these varaiables see NSDebug.h; http://theshadow.uw.hu/iPhoneSDKdoc/Foundation.framework/NSDebug.h.html
-   
-   For malloc debugging see: http://developer.apple.com/mac/library/documentation/Performance/Conceptual/ManagingMemory/Articles/MallocDebug.html
-   */
-  
-  NSSetUncaughtExceptionHandler(&exceptionHandler);
-  
   @autoreleasepool {
   
   // Register any special test case classes
@@ -74,7 +46,7 @@ int main(int argc, char *argv[]) {
       retVal = [GHTestRunner run];
     } else {
       // To run all tests (from ENV)
-      GHTestApp *app = [[GHTestApp alloc] init];
+      __unused GHTestApp *app = [[GHTestApp alloc] init];
       // To run a different test suite:
       //GHTestSuite *suite = [GHTestSuite suiteWithTestFilter:@"GHSlowTest,GHAsyncTestCaseTest"];
       //GHTestApp *app = [[GHTestApp alloc] initWithSuite:suite];

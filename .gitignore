@@ -1,5 +1,13 @@
+# OS X
 .DS_Store
-build
-xcuserdata
-project.xcworkspace
-xcshareddata
+
+# build
+build/
+
+# Xcode
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+
+# Appcode
+.idea
